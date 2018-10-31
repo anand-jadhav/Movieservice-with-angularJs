@@ -1,0 +1,20 @@
+/* .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+   */
+  .mat-card-image{
+    Width: 30%;
+    height:40%;
+    align-content: center;
+  }
+mat-card{
+  display:flex;
+}
+.card{
+  flex-direction: row;
+}

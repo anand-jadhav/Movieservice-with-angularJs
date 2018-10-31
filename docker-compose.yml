@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    container_name: "mongo_db"
+    network_mode: host
+    environment:
+      MONGO_INITDB_DATABASE: movie_db
+
+  eureka:
+    image: spring-eureka-server
+    build: spring-eureka-server/
+    restart: always
+    network_mode: host
+    container_name: "spring-eureka-server"
+    ports:
+      - 8761:8761
+    expose:
+      - 8761
+
+  config:
+    image: springconfigserver
+    build: springconfigserver/
+    restart: always
+    network_mode: host
+    container_name: "springconfigserver"
+    depends_on:
+      - eureka
+    ports:
+      - 8888:8888
+    expose:
+      - 8888
+
+  moviecruizer:
+    image: moviecruizer
+    build: moviecruizer/
+    restart: always
+    network_mode: host
+    container_name: "moviecruizer"
+    depends_on:
+      - mongodb
+      - eureka
+      - config
+    ports:
+      - 8090:8090
+    expose:
+      - 8080
+
+  zuul:
+    image: springzullgatewayproxy
+    build: springzullgatewayproxy/
+    restart: always
+    network_mode: host
+    container_name: "springzullgatewayproxy"
+    depends_on:
+      - moviecruizer
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+
+

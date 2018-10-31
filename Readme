@@ -1,0 +1,8 @@
+This is complete microservices assignmnet which includes implementation of java, java spring boot, microservices and frontend with angular js with angular material implementation.
+
+
+
+first Run sudo docker-compose up
+have to run mongo docker separate with this command 
+sudo docker run -p 27018:27017 -d -v/desktop/mongo/data/db mongo:latest
+then initiate angular server

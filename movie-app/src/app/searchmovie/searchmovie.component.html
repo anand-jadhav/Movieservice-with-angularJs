@@ -1,0 +1,10 @@
+ <div class="example-container">
+    <mat-form-field>
+        <input matInput placeholder="Input" type="text" #newHero> 
+    </mat-form-field>
+    <button (click)="display(newHero.value)">Search</button>
+  </div>
+  <app-moviedetail [search]="movies"></app-moviedetail>
+  <!-- Get all the movies-->
+
+  
